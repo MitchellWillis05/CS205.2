@@ -14,8 +14,12 @@ from sklearn.preprocessing import LabelEncoder
 data = pd.read_csv('Datasets/GymTrackingDataset.csv')
 
 # Select features and target
-features = data[['Age', 'Weight (kg)', 'Height (m)', 'Fat_Percentage']]
+features = data[['Age', 'Gender', 'Weight (kg)', 'Height (m)', 'Fat_Percentage']]
 target = data['Workout_Type']
+
+# encode gender
+gender_encoder = LabelEncoder()
+features['Gender'] = gender_encoder.fit_transform(features['Gender'])
 
 # Encode target labels (Workout_Type)
 label_encoder = LabelEncoder()
@@ -65,14 +69,13 @@ for model_name, report in classification_reports.items():
 
 
 # Function to predict workout type for new input
-def predict_workout(age, weight, height, fat_percentage, model):
-    bmi = weight / (height ** 2)
-    input_features = [[age, weight, height, fat_percentage]]
+def predict_workout(age, gender, weight, height, fat_percentage, model):
+    input_features = [[age, gender, weight, height, fat_percentage]]
     prediction = model.predict(input_features)
     return label_encoder.inverse_transform(prediction)[0]
 
 
-# Example prediction using Random Forest model
+# Example prediction using Decision Tree
 model = models['Decision Tree']
-example_prediction = predict_workout(age=59, weight=150, height=1.7, fat_percentage=70, model=model)
-print("\nRecommended Workout Type (using", model, "):", example_prediction)
+example_prediction = predict_workout(age=59, gender=0, weight=150, height=1.7, fat_percentage=70, model=model)
+print("\nRecommended Workout Type (using ", model, "):", example_prediction)
