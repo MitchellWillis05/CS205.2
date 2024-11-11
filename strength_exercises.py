@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the dataset
-dataset_path = 'Datasets/ExerciseDataset.csv'
+dataset_path = 'Datasets/StrengthExerciseDataset.csv'
 df = pd.read_csv(dataset_path)
 
 # Display initial rows of the dataset
