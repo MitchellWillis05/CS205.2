@@ -1,56 +1,72 @@
 import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import mean_absolute_error
 
 # Load the dataset
 dataset_path = 'Datasets/StrengthExerciseDataset.csv'
 df = pd.read_csv(dataset_path)
 
-# Display initial rows of the dataset
-print("Dataset Preview:")
-print(df.head())
+# Encode categorical variables to numerical values
+label_encoders = {}
+for column in ["Type", "BodyPart", "Equipment"]:
+    label_encoders[column] = LabelEncoder()
+    df[column] = label_encoders[column].fit_transform(df[column])
+
+# Features definition
+# Drops rows if the "Rating" column is N/A
+df = df.dropna(subset=["Rating"])
+X = df[["Type", "BodyPart", "Equipment"]]
+y = df["Rating"]
 
 
-# Function to sort exercises by a specified column
-def sort_exercises(df, column_name, ascending=True):
-    if column_name not in df.columns:
-        raise ValueError(f"Column '{column_name}' not found in the dataset.")
+# Split the data into training and testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    return df.sort_values(by=column_name, ascending=ascending)
+# Create and train the model
+model = DecisionTreeRegressor(random_state=42)
+model.fit(X_train, y_train)
 
-
-# Example sorting operations
-sorted_by_rating = sort_exercises(df, "Rating", ascending=False)  # Highest-rated exercises first
-sorted_by_level = sort_exercises(df, "Level")  # Beginner to advanced levels
+# Make predictions on the test set
+y_pred = model.predict(X_test)
 
 
-# Function to filter exercises based on criteria
-def filter_exercises(df, body_part=None, equipment=None, level=None):
-    filtered_df = df.copy()
-    if body_part:
-        filtered_df = filtered_df[filtered_df["BodyPart"].str.contains(body_part, case=False, na=False)]
-    if equipment:
-        filtered_df = filtered_df[filtered_df["Equipment"].str.contains(equipment, case=False, na=False)]
-    if level:
-        filtered_df = filtered_df[filtered_df["Level"].str.contains(level, case=False, na=False)]
+# Function to recommend exercises based on preferences
+def recommend_exercises(preferred_type, preferred_body_part, preferred_equipment):
+    # Encode preferences
+    type_encoded = label_encoders["Type"].transform([preferred_type])[0]
+    body_part_encoded = label_encoders["BodyPart"].transform([preferred_body_part])[0]
+    equipment_encoded = label_encoders["Equipment"].transform([preferred_equipment])[0]
 
-    return filtered_df
+    input_data = pd.DataFrame(
+        np.array([[type_encoded, body_part_encoded, equipment_encoded]]),
+        columns=["Type", "BodyPart", "Equipment"]
+    )
+    predicted_rating = model.predict(input_data)[0]
+
+    # Find the best matching exercise
+    filtered_df = df[
+        (df["Type"] == type_encoded) &
+        (df["BodyPart"] == body_part_encoded) &
+        (df["Equipment"] == equipment_encoded)
+        ]
+    best_exercise = filtered_df.loc[filtered_df["Rating"].idxmax()]
+
+    return {
+        "Title": best_exercise["Title"],
+        "Description": best_exercise["Desc"],
+        "Rating": best_exercise["Rating"]
+    }
 
 
-# Example filtering operations
-upper_body_exercises = filter_exercises(df, body_part="Upper Body")
-dumbbell_exercises = filter_exercises(df, equipment="Dumbbell")
-beginner_exercises = filter_exercises(df, level="Beginner")
+# Example usage
+# preferred type, preferred body part, preferred equipment
+p_type = "Strength"
+p_body_part = "Chest"
+p_equipment = "Cable"
 
-
-# Function to group exercises by a column
-def group_exercises(df, group_by_column):
-    if group_by_column not in df.columns:
-        raise ValueError(f"Column '{group_by_column}' not found in the dataset.")
-
-    grouped = df.groupby(group_by_column).size().reset_index(name='Count')
-    return grouped
-
-
-# Example grouping operation
-grouped_by_body_part = group_exercises(df, "BodyPart")
-print("\nExercises Sorted by Rating:")
-print(sorted_by_rating)
+recommendation = recommend_exercises(p_type, p_body_part, p_equipment)
+print("\nRecommended Exercise:")
+print(recommendation)
