@@ -15,6 +15,7 @@ for column in ["Type", "BodyPart", "Equipment"]:
 # Drop rows where "Rating" is missing
 df = df.dropna(subset=["Rating"])
 
+
 # Function to recommend exercises based on preferences
 def recommend_exercises(preferred_type, preferred_body_part, preferred_equipment):
     # Encode preferences

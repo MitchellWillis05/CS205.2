@@ -9,35 +9,35 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import LabelEncoder
 
-# Load the dataset from the CSV file
-
+# Load the dataset
 data = pd.read_csv('Datasets/GymTrackingDataset.csv')
 
-# Select features and target
-features = data[['Age', 'Gender', 'Weight (kg)', 'Height (m)', 'Fat_Percentage']]
-target = data['Workout_Type']
+# Select X Y
+X = data[['Age', 'Gender', 'Weight (kg)', 'Height (m)', 'Fat_Percentage']]
+Y = data['Workout_Type']
 
-# encode gender
+# encode gender so that it works with integers
 gender_encoder = LabelEncoder()
-features['Gender'] = gender_encoder.fit_transform(features['Gender'])
+X.loc[:, 'Gender'] = gender_encoder.fit_transform(X['Gender'])
 
-# Encode target labels (Workout_Type)
+
+# Encode workout type
 label_encoder = LabelEncoder()
-target_encoded = label_encoder.fit_transform(target)
+target_encoded = label_encoder.fit_transform(Y)
 
 # Split data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(features, target_encoded, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, target_encoded, test_size=0.2, random_state=42)
 
-# Initialize the models to test
+# Select models to test
 models = {
     'Random Forest': RandomForestClassifier(random_state=42),
-    'Logistic Regression': LogisticRegression(max_iter=200),
+    'Logistic Regression': LogisticRegression(max_iter=1000),
     'SVM': SVC(),
     'KNN': KNeighborsClassifier(),
     'Decision Tree': DecisionTreeClassifier(random_state=42)
 }
 
-# Evaluate each model and store results
+# Evaluate each model
 accuracy_scores = {}
 classification_reports = {}
 
@@ -77,5 +77,5 @@ def predict_workout(age, gender, weight, height, fat_percentage, model):
 
 # Example prediction using Decision Tree
 model = models['Decision Tree']
-example_prediction = predict_workout(age=59, gender=0, weight=150, height=1.7, fat_percentage=70, model=model)
+example_prediction = predict_workout(age=19, gender=1, weight=79, height=1.7, fat_percentage=10, model=model)
 print("\nRecommended Workout Type (using ", model, "):", example_prediction)
