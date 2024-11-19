@@ -69,12 +69,8 @@ nav {
     display: block;
 }
 
-.logo-link img {
-    display: block;
-}
-
-
 .logo img{
+    display: block;
     height: 4rem;
 }
 
@@ -94,6 +90,21 @@ nav {
 
 .menu i {
     font-size: 5rem;
+}
+
+@media (width < 550px)
+{
+    .logo h1{
+        font-size: 2rem;
+    }
+
+    .logo img{
+        height: 3rem;
+    }
+
+    .menu i{
+        font-size: 4rem;
+    }
 }
 
 /* Side Menu */
@@ -139,3 +150,11 @@ nav {
     color: white;
     margin-bottom: 20px;
 }
+
+@media (width < 550px)
+{
+    .side-menu i {
+        font-size: 4rem;
+    }
+}
+
