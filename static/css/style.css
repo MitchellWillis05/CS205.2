@@ -1,36 +1,141 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body, html {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins Medium", serif;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins Medium", serif;
+    overflow-x: hidden;
 }
 
+/* resize overlay */
+
 .overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
 }
 
 .overlay-content {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  color: black;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: black;
 }
 
 .overlay-content p {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .resize-icon {
-  margin-top: 1rem;
-  height: 15rem;
-  width: auto;
+    margin-top: 1rem;
+    height: 15rem;
+    width: auto;
+}
+
+/* navbar */
+
+nav {
+    height: 100px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 3;
+}
+
+.navbar-container {
+    width: 98%;
+    margin: 0 2%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-container .logo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-link {
+    text-decoration: none;
+    display: block;
+}
+
+.logo-link img {
+    display: block;
+}
+
+
+.logo img{
+    height: 4rem;
+}
+
+.logo h1{
+    color: black;
+    margin: 0 0.5rem;
+    font-size: 2.8rem;
+}
+
+.menu {
+    margin: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu i {
+    font-size: 5rem;
+}
+
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 80%;
+    background-color: #333;
+    color: white;
+    z-index: 5;
+    transition: right 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0 0;
+}
+
+.side-menu ul li {
+    margin: 20px 0;
+}
+
+.side-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.side-menu ul li a:hover {
+    text-decoration: underline;
+}
+
+.side-menu i {
+    align-self: flex-end;
+    font-size: 5rem;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 20px;
 }

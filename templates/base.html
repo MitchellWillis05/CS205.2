@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/5115542834.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/static/css/style.css">
     <title>Exercise Me</title>
 </head>
@@ -18,11 +18,34 @@
 
     <nav>
         <div class="navbar-container">
-
+            <a href="/" class="logo-link">
+                <div class="logo">
+                    <img src="/static/images/logo.png" alt="logo">
+                    <h1>EXERCISE ME</h1>
+                </div>
+            </a>
+            <div class="menu">
+                <i class='bx bx-menu-alt-right hamburg' id="hamburger-menu"></i>
+            </div>
         </div>
     </nav>
 
+    <div class="side-menu" id="side-menu">
+        <i class='bx bx-x' id="close-menu"></i>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+    {% block content %}
+    {% endblock %}
+    </div>
 
     <script src="/static/scripts/ar-blocker.js"></script>
+    <script src="/static/scripts/nav-menu.js"></script>
 </body>
 </html>
