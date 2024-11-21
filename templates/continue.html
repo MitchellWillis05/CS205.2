@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="workout-determine">
+        <div class="workout-heading">
+            <h1 data-aos="fade-up" data-aos-duration="2000" data-aos-delay="0">FANTASTIC!</h1>
+            <h2 id="subheading" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1000">Now your height and weight:</h2>
+        </div>
+        <div class="age-gender">
+            <div class="custom-number-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="2200">
+                <input type="number" id="height-input" value="0" style="width: 24rem">
+                <p>CM</p>
+                <div class="arrows">
+                    <i class='bx bxs-up-arrow' onclick="incrementHeight()"></i>
+                    <i class='bx bxs-down-arrow' onclick="decrementHeight()"></i>
+                </div>
+            </div>
+           <div class="custom-number-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="2200" style="margin-top: 4rem">
+                <input type="number" id="weight-input" value="0" style="width: 24rem">
+               <p>KG</p>
+                <div class="arrows">
+                    <i class='bx bxs-up-arrow' onclick="incrementWeight()"></i>
+                    <i class='bx bxs-down-arrow' onclick="decrementWeight()"></i>
+                </div>
+            </div>
+            <div class="custom-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="3000">
+                <button class="submit-age-gender-button" onclick="submitHeightWeight()"><i class='bx bx-right-arrow-alt'></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="/static/scripts/continue.js"></script>
+{%endblock%}

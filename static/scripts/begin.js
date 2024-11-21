@@ -59,6 +59,7 @@ async function submitAgeGender() {
             if (response.ok)
             {
                 const result = await response.json();
+                window.location.href = "/continue";
             }
             else
             {
@@ -84,3 +85,6 @@ function triggerFlash() {
     textElement.removeEventListener('animationend', handleAnimationEnd);
   });
 }
+
+const nav = document.getElementById('nav');
+nav.style.display = 'none';

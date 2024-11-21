@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="/static/css/style.css">
     <title>Exercise Me</title>
 </head>
 <body>
-    <div class="overlay" id="overlay">
+    <div class="overlay" id="overlay" style="display: none">
         <div class="overlay-content">
             <h1>Your screen's aspect ratio is not supported,</h1>
             <h1>Please move to a mobile device.</h1>
@@ -16,7 +17,7 @@
         </div>
     </div>
 
-    <nav>
+    <nav id="nav">
         <div class="navbar-container">
             <a href="/" class="logo-link">
                 <div class="logo">

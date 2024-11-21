@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="/static/css/style.css">
-    <title>Exercise Me</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     <section class="workout-determine">
         <div class="workout-heading">
             <h1 data-aos="fade-up" data-aos-duration="2000" data-aos-delay="0">LETS BEGIN!</h1>
@@ -16,7 +7,7 @@
         </div>
         <div class="age-gender">
             <div class="custom-number-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="2200">
-                <input type="number" id="number-input" value="0">
+                <input type="number" inputmode="numeric" id="number-input" value="0">
                 <div class="arrows">
                     <i class='bx bxs-up-arrow' onclick="incrementNumber()"></i>
                     <i class='bx bxs-down-arrow' onclick="decrementNumber()"></i>
@@ -38,5 +29,4 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="/static/scripts/begin.js"></script>
-</body>
-</html>
+{%endblock%}

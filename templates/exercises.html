@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="workout-determine">
+        <div class="workout-heading">
+            <h2 id="subheading" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1000">Find your perfect {{session}} exercise</h2>
+        </div>
+        <div class="age-gender">
+            <div class="custom-dropdown-container" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="2000">
+                <div class="custom-dropdown">
+                    <button class="dropdown-button" id="dropdown-toggle-1">
+                        Select an Option
+                        <i class='bx bx-dots-vertical-rounded'></i>
+                    </button>
+                    <ul class="dropdown-menu" id="dropdown-menu-1">
+                        <li class="dropdown-item">Barbell</li>
+                        <li class="dropdown-item">E-Z Curl Bar</li>
+                        <li class="dropdown-item">Bands</li>
+                        <li class="dropdown-item">Kettlebells</li>
+                        <li class="dropdown-item">Dumbbell</li>
+                        <li class="dropdown-item">Cable</li>
+                        <li class="dropdown-item">Machine</li>
+                        <li class="dropdown-item">Body Only</li>
+                        <li class="dropdown-item">None</li>
+                        <li class="dropdown-item">Other</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="custom-dropdown-container" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="2500">
+                <div class="custom-dropdown">
+                    <button class="dropdown-button" id="dropdown-toggle-2">
+                        Select an Option
+                        <i class='bx bx-dots-vertical-rounded'></i>
+                    </button>
+                    <ul class="dropdown-menu" id="dropdown-menu-2">
+                        <li class="dropdown-item">Abdominals</li>
+                        <li class="dropdown-item">Abductors</li>
+                        <li class="dropdown-item">Adductors</li>
+                        <li class="dropdown-item">Biceps</li>
+                        <li class="dropdown-item">Calves</li>
+                        <li class="dropdown-item">Chest</li>
+                        <li class="dropdown-item">Forearms</li>
+                        <li class="dropdown-item">Glutes</li>
+                        <li class="dropdown-item">Hamstrings</li>
+                        <li class="dropdown-item">Lats</li>
+                        <li class="dropdown-item">Lower Back</li>
+                        <li class="dropdown-item">Middle Back</li>
+                        <li class="dropdown-item">Traps</li>
+                        <li class="dropdown-item">Neck</li>
+                        <li class="dropdown-item">Quadriceps</li>
+                        <li class="dropdown-item">Shoulders</li>
+                        <li class="dropdown-item">Triceps</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="custom-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="3000">
+                <button class="submit-age-gender-button" onclick="resultconfirm()"><i class='bx bx-right-arrow-alt'></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="/static/scripts/exercise-determine.js"></script>
+{%endblock%}

@@ -37,45 +37,18 @@ models = {
     'Decision Tree': DecisionTreeClassifier(random_state=42)
 }
 
-# Evaluate each model
-accuracy_scores = {}
-classification_reports = {}
+model = models['Decision Tree']
 
-for model_name, model in models.items():
-    # Train the model
-    model.fit(X_train, y_train)
+# Train the model
+model.fit(X_train, y_train)
 
-    # Make predictions
-    y_pred = model.predict(X_test)
-
-    # Calculate accuracy and store the results
-    accuracy_scores[model_name] = accuracy_score(y_test, y_pred)
-    classification_reports[model_name] = classification_report(y_test, y_pred, target_names=label_encoder.classes_,
-                                                               output_dict=True)
-
-# Plotting the accuracy of each model
-plt.figure(figsize=(10, 6))
-plt.bar(accuracy_scores.keys(), accuracy_scores.values(),
-        color=['skyblue', 'lightgreen', 'lightcoral', 'lightskyblue', 'lightpink'])
-plt.xlabel('Model')
-plt.ylabel('Accuracy')
-plt.title('Accuracy of Different Models')
-plt.show()
-
-# Print classification reports for all models
-for model_name, report in classification_reports.items():
-    print(f"\nClassification Report for {model_name}:")
-    print(pd.DataFrame(report).transpose())
+# Make predictions
+y_pred = model.predict(X_test)
 
 
 # Function to predict workout type for new input
-def predict_workout(age, gender, weight, height, fat_percentage, model):
+def predict_workout(age, gender, weight, height, fat_percentage):
     input_features = [[age, gender, weight, height, fat_percentage]]
     prediction = model.predict(input_features)
     return label_encoder.inverse_transform(prediction)[0]
 
-
-# Example prediction using Decision Tree
-model = models['Decision Tree']
-example_prediction = predict_workout(age=19, gender=1, weight=79, height=1.7, fat_percentage=10, model=model)
-print("\nRecommended Workout Type (using ", model, "):", example_prediction)

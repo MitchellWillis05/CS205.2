@@ -417,6 +417,82 @@ nav {
 
 }
 
+.age-gender p {
+    font-size: 5rem;
+    margin: 0;
+}
+
+/* Custom Dropdown Container */
+.custom-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+/* Dropdown Button */
+.dropdown-button {
+    width: 30rem;
+    height: 10rem;
+    font-size: 2rem;
+    color: black;
+    border: 0.4rem solid black;
+    font-family: "Poppins Medium", serif;
+    border-radius: 15px;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    position: relative;
+}
+
+.dropdown-button i {
+    font-size: 5rem;
+}
+
+/* Hover Effects for Dropdown Button */
+.dropdown-button:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 3.5rem;
+    width: 12rem;
+    background-color: white;
+    border: 0.2rem solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu.show {
+    display: flex;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: black;
+    color: white;
+}
+
 
 
 
