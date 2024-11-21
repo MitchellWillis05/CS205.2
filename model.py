@@ -37,7 +37,7 @@ models = {
     'Decision Tree': DecisionTreeClassifier(random_state=42)
 }
 
-model = models['Decision Tree']
+model = DecisionTreeClassifier(random_state=42)
 
 # Train the model
 model.fit(X_train, y_train)
