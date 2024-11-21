@@ -492,6 +492,11 @@ nav {
     background-color: black;
     color: white;
 }
+.workout-heading p {
+    font-size: 2rem;
+    padding: 0 10%;
+}
+
 
 
 

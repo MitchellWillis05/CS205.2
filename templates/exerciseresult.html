@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <section class="workout-determine">
+        <div class="workout-heading">
+            <h2  data-aos="fade-up" style="font-weight: bold" data-aos-duration="2000" data-aos-delay="0">{{ session.Title }}</h2>
+            <p  data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500">{{ session.Description  }}</p>
+            <h2  data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1000"><i class='bx bxs-star'></i> {{ session.Rating   }}</h2>
+        </div>
+        <div class="age-gender" style="display: flex; margin-bottom: 3rem">
+            <div class="custom-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="3000">
+                <button class="submit-age-gender-button" onclick="backx()"><i class='bx bx-left-arrow-alt' ></i></button>
+            </div>
+            <div class="custom-input" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="3000">
+                <button class="submit-age-gender-button" onclick="homex()"><i class='bx bxs-home'></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="/static/scripts/exercise-result.js"></script>
+{%endblock%}

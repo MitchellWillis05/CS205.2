@@ -27,6 +27,42 @@ function initDropdown(toggleId, menuId) {
 initDropdown('dropdown-toggle-1', 'dropdown-menu-1');
 initDropdown('dropdown-toggle-2', 'dropdown-menu-2');
 
+async function exerciseConfirm() {
+    const equipment = document.getElementById("dropdown-toggle-1")
+    const bodypart = document.getElementById("dropdown-toggle-2")
+    const aEquipment = equipment.innerText;
+    const aBodypart = bodypart.innerText;
+
+    try
+    {
+        const response = await fetch('/exercises',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ equipment: aEquipment, bodypart: aBodypart}),
+            });
+
+            if (response.ok)
+            {
+                const result = await response.json();
+                window.location.href = "/exercise-result";
+            }
+            else
+            {
+                const result = await response.json();
+                triggerFlash();
+            }
+    }
+
+    catch (error)
+    {
+        console.error('Error submitting entry:', error);
+        error.innerText = 'An error occurred, please try again.';
+    }
+}
+
 const nav = document.getElementById('nav');
 console.log(nav);
 console.log("hello");

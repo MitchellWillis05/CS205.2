@@ -118,8 +118,31 @@ def exercises():
         else:
             return render_template("begin.html")
     if request.method == "POST":
-        # find = se.recommend_exercises(session['result'])
-        return jsonify({'message': 'Method not allowed'}), 200
+        data = request.get_json()
+
+        equipment = data.get('equipment')
+        bodypart = data.get('bodypart')
+        proper = session['result'][0].upper() + session['result'][1:] if session['result'] else session['result']
+        print(equipment, bodypart, proper)
+        exercise = se.recommend_exercises(proper, bodypart, equipment)
+        print(exercise)
+        session["exercise"] = exercise
+
+        return jsonify({'message': 'Data received successfully'}), 200
+
+
+@app.route("/exercise-result", methods=['GET', 'POST'])
+def exerciseresult():
+    if request.method == "GET":
+        if session['exercise'] is not None:
+            return render_template("exerciseresult.html", session=session["exercise"])
+        else:
+            return render_template("begin.html")
+    if request.method == "POST":
+
+        return jsonify({'message': 'Method not allowed'}), 400
+
+
 
 
 if __name__ == '__main__':

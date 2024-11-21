@@ -45,13 +45,3 @@ def recommend_exercises(preferred_type, preferred_body_part, preferred_equipment
         "Message": "Try modifying your preferences or explore other options."
     }
 
-
-# Example usage
-# preferred type, preferred body part, preferred equipment
-p_type = "Strength"
-p_body_part = "Chest"
-p_equipment = "Cable"
-
-recommendation = recommend_exercises(p_type, p_body_part, p_equipment)
-print("\nRecommended Exercise:")
-print(recommendation)
